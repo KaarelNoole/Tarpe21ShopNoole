@@ -12,6 +12,8 @@ builder.Services.AddDbContext<Tarpe21ShopNooleContext>(options => options.UseSql
 builder.Services.AddScoped<ISpaceshipsServices, SpaceshipServices>();
 builder.Services.AddScoped<IFileServices, FileServices>();
 builder.Services.AddScoped<IRealEstatesServices, RealEstateServices>();
+builder.Services.AddScoped<ICarServices, CarServices>();
+builder.Services.AddScoped<IWeatherForecastsServices, WeatherForecastsServices>();
 
 var app = builder.Build();
 

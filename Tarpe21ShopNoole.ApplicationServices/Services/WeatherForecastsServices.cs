@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Nancy;
 using Nancy.Json;
 using Tarpe21ShopNoole.Core.Dto.WeatherDto;
+using Tarpe21ShopNoole.Core.ServiceInterface;
 
 namespace Tarpe21ShopNoole.ApplicationServices.Services
 {
-    public class WeatherForecastsServices
+    public class WeatherForecastsServices : IWeatherForecastsServices
     {
         public async Task<WeatherResultDto> WeatherDetail(WeatherResultDto dto)
         {
