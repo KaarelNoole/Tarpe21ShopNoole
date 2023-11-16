@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Tarpe21ShopNoole.ApplicationServices.Services;
+using Tarpe21ShopNoole.Core.ServiceInterface;
+using Tarpe21ShopNoole.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Tarpe21ShopNooleContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ISpaceshipsServices, SpaceshipServices>();
+builder.Services.AddScoped<IFileServices, FileServices>();
+builder.Services.AddScoped<IRealEstatesServices, RealEstateServices>();
 
 var app = builder.Build();
 

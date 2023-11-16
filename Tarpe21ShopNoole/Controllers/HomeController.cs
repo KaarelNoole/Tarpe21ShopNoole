@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Tarpe21ShopNoole.Models;
 
 namespace Tarpe21ShopNoole.Controllers
