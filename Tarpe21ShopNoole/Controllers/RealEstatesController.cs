@@ -80,11 +80,11 @@ namespace Tarpe21ShopNoole.Controllers
                 ModifiedAt = DateTime.Now,
                 Files = vm.Files,
                 FileToApiDtos = vm.FileToApiViewModels
-                .Select(x => new FileToApiDto
+                .Select(z => new FileToApiDto
                 {
-                    ID = x.ImageId,
-                    ExistingFilePath = x.FilePath,
-                    RealEstateId = x.RealEstateId,
+                    ID = z.ImageId,
+                    ExistingFilePath = z.FilePath,
+                    RealEstateId = z.RealEstateId,
                 }).ToArray()
             };
             var result = await _realEstatesServices.Create(dto);
@@ -145,7 +145,7 @@ namespace Tarpe21ShopNoole.Controllers
         {
             var dto = new RealEstateDto()
             {
-                ID = Guid.NewGuid(),
+                ID = (Guid)vm.ID,
                 Address = vm.Address,
                 City = vm.City,
                 Country = vm.Country,
@@ -172,12 +172,12 @@ namespace Tarpe21ShopNoole.Controllers
                 ModifiedAt = DateTime.Now,
                 Files = vm.Files,
                 FileToApiDtos = vm.FileToApiViewModels
-                .Select(x => new FileToApiDto
+                .Select(z => new FileToApiDto
                 {
-                    ID = x.ImageId,
-                    ExistingFilePath = x.FilePath,
-                    RealEstateId = x.RealEstateId,
-                })
+                    ID = z.ImageId,
+                    ExistingFilePath = z.FilePath,
+                    RealEstateId = z.RealEstateId,
+                }).ToArray()
             };
             var result = await _realEstatesServices.Update(dto);
             if (result == null)

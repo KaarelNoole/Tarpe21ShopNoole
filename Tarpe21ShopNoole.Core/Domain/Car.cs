@@ -17,6 +17,7 @@ namespace Tarpe21ShopNoole.Core.Domain
 
         public IEnumerable<FileToApi> FilesToApi { get; set; } = new List<FileToApi>(); //files to be added to the api
 
+
         //database properties
         public DateTime CreatedAt { get; set; } // when entry was added to the database
         public DateTime ModifiedAt { get; set; } //when was entry modified in the database

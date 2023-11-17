@@ -10,7 +10,7 @@ namespace Tarpe21ShopNoole.Core.Domain
     {
         public Guid ID { get; set; }
         public string ExistingFilePath { get; set; }
-        public Guid? RealEstateId { get; set; }
         public Guid? CarId { get; set; }
+        public Guid? RealEstateId { get; set; }
     }
 }

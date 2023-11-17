@@ -1,5 +1,5 @@
-﻿@using Tarpe21ShopNoole.Core.Domain;
-@model Tarpe21ShopNoole.Models.RealEstates.RealEstateCreateUpdateViewModel
+﻿﻿@using Tarpe21ShopNoole.Core.Domain;
+@model Tarpe21ShopNoole.Models.RealEstates.RealEstateCreateUpdateViewModel;
 @if (Model.ID.HasValue)
 {
     <h1>Update</h1>
@@ -51,7 +51,7 @@ else
             <div class="form-group row">
                 <label asp-for="PhoneNumber" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <input asp-for="PhoneNumber" class="form-control" />
+                    <input asp-for="PostalCode" class="form-control" />
                 </div>
             </div>
 

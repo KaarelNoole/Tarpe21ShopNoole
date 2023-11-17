@@ -40,7 +40,7 @@ namespace Tarpe21ShopNoole.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            RealEstateCreateUpdateViewModel vm = new();
+            CarCreateUpdateViewModel vm = new();
             return View("CreateUpdate", vm);
         }
         [HttpPost]
@@ -49,6 +49,11 @@ namespace Tarpe21ShopNoole.Controllers
             var dto = new CarDto()
             {
                 ID = Guid.NewGuid(),
+                Brand = vm.Brand,
+                Model = vm.Model,
+                Price = vm.Price,
+                Description = vm.Description,
+                GearShiftType = vm.GearShiftType,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
                 Files = vm.Files,
@@ -65,7 +70,7 @@ namespace Tarpe21ShopNoole.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction("Indedx", vm);
+            return RedirectToAction(nameof(Index), vm);
         }
         [HttpGet]
         public async Task<IActionResult> Update(Guid id)
@@ -101,7 +106,7 @@ namespace Tarpe21ShopNoole.Controllers
         {
             var dto = new CarDto()
             {
-                ID = Guid.NewGuid(),
+                ID = (Guid)vm.ID,
                 Brand = vm.Brand,
                 Model = vm.Model,
                 Price = vm.Price,
@@ -116,7 +121,7 @@ namespace Tarpe21ShopNoole.Controllers
                     ID = x.ImageId,
                     ExistingFilePath = x.FilePath,
                     CarId = x.CarId,
-                })
+                }).ToArray()
             };
             var result = await _carService.Update(dto);
             if (result == null)

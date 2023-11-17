@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Tarpe21ShopNoole.ApplicationServices.Services;
 using Tarpe21ShopNoole.Core.ServiceInterface;
 using Tarpe21ShopNoole.Data;
-
+using TARpe21ShopNoole.ApplicationServices.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

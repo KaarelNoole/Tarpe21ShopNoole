@@ -32,7 +32,7 @@ namespace Tarpe21ShopNoole.Core.Domain
         public bool DoesHaveParkingSpace { get; set; } // does the property come with a parking space
         public int DoesHavePowerConnection { get; set; } // does the property have connection to the power grid
         public int DoesHaveWaterGridConnection { get; set; } // does the property have connection to water grud
-        public decimal SqMPrice // whats the price for square meter in this property
+        public decimal? SqMPrice // whats the price for square meter in this property
         {
             get { return Price / SqueareMeters; }
         }

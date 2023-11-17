@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tarpe21ShopNoole.Data;
 
@@ -11,9 +12,10 @@ using Tarpe21ShopNoole.Data;
 namespace Tarpe21ShopNoole.Data.Migrations
 {
     [DbContext(typeof(Tarpe21ShopNooleContext))]
-    partial class Tarpe21ShopNooleContextModelSnapshot : ModelSnapshot
+    [Migration("20231117073214_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

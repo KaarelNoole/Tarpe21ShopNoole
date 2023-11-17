@@ -67,36 +67,37 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
         }
         public async Task<RealEstate> Update(RealEstateDto dto)
         {
-            var domain = new RealEstate()
-            {
-                ID = Guid.NewGuid(),
-                Address = dto.Address,
-                City = dto.City,
-                Country = dto.Country,
-                County = dto.County,
-                PostalCode = dto.PostalCode,
-                PhoneNumber = dto.PhoneNumber,
-                FaxNumber = dto.FaxNumber,
-                ListingDescription = dto.ListingDescription,
-                SqueareMeters = dto.SqueareMeters,
-                BuildDate = dto.BuildDate,
-                Price = dto.Price,
-                RoomCount = dto.RoomCount,
-                FloorCount = dto.FloorCount,
-                EstateFloor = dto.EstateFloor,
-                Bathrooms = dto.Bathrooms,
-                DoesHaveParkingSpace = dto.DoesHaveParkingSpace,
-                DoesHavePowerConnection = dto.DoesHavePowerConnection,
-                DoesHaveWaterGridConnection = dto.DoesHaveWaterGridConnection,
-                Type = dto.Type,
-                IsPropertyNewDevelopent = dto.IsPropertyNewDevelopent,
-                IsPropertySold = dto.IsPropertySold,
-                CreatedAt = DateTime.Now,
-                ModifiedAt = DateTime.Now,
-            };
-            _context.RealEstates.Update(domain);
+            RealEstate realEstate = new RealEstate();
+
+            realEstate.ID = dto.ID;
+            realEstate.Address = dto.Address;
+            realEstate.City = dto.City;
+            realEstate.Country = dto.Country;
+            realEstate.County = dto.County;
+            realEstate.PostalCode = dto.PostalCode;
+            realEstate.PhoneNumber = dto.PhoneNumber;
+            realEstate.FaxNumber = dto.FaxNumber;
+            realEstate.ListingDescription = dto.ListingDescription;
+            realEstate.SqueareMeters = dto.SqueareMeters;
+            realEstate.BuildDate = dto.BuildDate;
+            realEstate.Price = dto.Price;
+            realEstate.RoomCount = dto.RoomCount;
+            realEstate.EstateFloor = dto.EstateFloor;
+            realEstate.Bathrooms = dto.Bathrooms;
+            realEstate.Bedrooms = dto.Bedrooms;
+            realEstate.DoesHaveParkingSpace = dto.DoesHaveParkingSpace;
+            realEstate.DoesHavePowerConnection = dto.DoesHavePowerConnection;
+            realEstate.DoesHaveWaterGridConnection = dto.DoesHaveWaterGridConnection;
+            realEstate.Type = dto.Type;
+            realEstate.IsPropertyNewDevelopent = dto.IsPropertyNewDevelopent;
+            realEstate.IsPropertySold = dto.IsPropertySold;
+            realEstate.CreatedAt = dto.CreatedAt;
+            realEstate.ModifiedAt = DateTime.Now;
+            _fileServices.FilesToApi(dto, realEstate);
+
+            _context.RealEstates.Update(realEstate);
             await _context.SaveChangesAsync();
-            return domain;
+            return realEstate;
         }
         public async Task<RealEstate> GetAsync(Guid id)
         {

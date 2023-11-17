@@ -61,17 +61,17 @@ else
             @foreach (var images in Model.FileToApiViewModels)
             {
                 <partial name="_Images" model="images" />
-                <input asp-action="removeImage" asp-controller="realEstates" asp-route-imageID="@images.ImageId" type="submit" class="btn btn-danger" value="Remove Image" />
+                <input asp-action="removeImage" asp-controller="Car" asp-route-imageID="@images.ImageId" type="submit" class="btn btn-danger" value="Remove Image" />
             }
         }
 
         @if (Model.ID.HasValue)
         {
-            <input asp-action="update" asp-controller="realEstates" type="submit" class="btn btn-primary" value="Update" />
+            <input asp-action="update" asp-controller="Car" type="submit" class="btn btn-primary" value="Update" />
         }
         else
         {
-            <input asp-action="create" asp-controller="realEstates" type="submit" class="btn btn-primary" value="Create" />
+            <input asp-action="create" asp-controller="Car" type="submit" class="btn btn-primary" value="Create" />
         }
 
         <a asp-action="Index" class="btn btn-primary">Back</a>

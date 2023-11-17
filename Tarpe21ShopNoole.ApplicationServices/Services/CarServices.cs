@@ -50,20 +50,21 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
         }
         public async Task<Car> Update(CarDto dto)
         {
-            var domain = new Car()
-            {
-                ID = Guid.NewGuid(),
-                Brand = dto.Brand,
-                Model = dto.Model,
-                Price = dto.Price,
-                Description = dto.Description,
-                GearShiftType = dto.GearShiftType,
-                CreatedAt = DateTime.Now,
-                ModifiedAt = DateTime.Now,
-            };
-            _context.Cars.Update(domain);
+            Car car = new Car();
+
+            car.ID = (Guid)dto.ID;
+            car.Brand = dto.Brand;
+            car.Model = dto.Model;
+            car.Price = dto.Price;
+            car.Description = dto.Description;
+            car.GearShiftType = dto.GearShiftType;
+            car.CreatedAt = dto.CreatedAt;
+            car.ModifiedAt = DateTime.Now;
+            _fileServices.FilesToApi(dto, car);
+
+            _context.Cars.Update(car);
             await _context.SaveChangesAsync();
-            return domain;
+            return car;
         }
         public async Task<Car> GetAsync(Guid id)
         {

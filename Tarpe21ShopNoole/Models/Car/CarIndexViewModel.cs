@@ -10,6 +10,7 @@ namespace Tarpe21ShopNoole.Models.Car
         public decimal Price { get; set; } // creates car model
         public string Description { get; set; }
         public string GearShiftType { get; set; }
+
         //database only properties
 
         public DateTime CreatedAt { get; set; } // when entry was added to the database

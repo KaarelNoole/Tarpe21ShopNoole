@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tarpe21ShopNoole.ApplicationServices.Services;
 using Tarpe21ShopNoole.Core.Domain;
 using Tarpe21ShopNoole.Core.Dto;
 using Tarpe21ShopNoole.Data;
+using Tarpe21ShopNoole.Data.Migrations;
 
-namespace Tarpe21ShopNoole.ApplicationServices.Services
+namespace TARpe21ShopNoole.ApplicationServices.Services
 {
     public class FileServices : IFileServices
     {
         private readonly Tarpe21ShopNooleContext _context;
-        private readonly IHostingEnvironment _webHost; 
-        public FileServices(Tarpe21ShopNooleContext context, IHostingEnvironment webHost)
+        private readonly IHostingEnvironment _webHost;
+        public FileServices
+            (
+                Tarpe21ShopNooleContext context,
+                IHostingEnvironment webHost
+            )
         {
-             _context = context;
+            _context = context;
             _webHost = webHost;
         }
         public void UploadFilesToDatabase(SpaceshipDto dto, SpaceShip domain)
@@ -67,7 +68,8 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
 
         public void FilesToApi(RealEstateDto dto, RealEstate realEstate)
         {
-            if (dto.Files == null && dto.Files.Count > 0)
+            string uniqueFileName = null;
+            if (dto.Files != null && dto.Files.Count > 0)
             {
                 if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
                 {
@@ -76,15 +78,15 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
                 foreach (var image in dto.Files)
                 {
                     string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         image.CopyTo(fileStream);
                         FileToApi path = new FileToApi
                         {
-                            ID = dto.ID,
-                            ExistingFilePath = filePath,
+                            ID = Guid.NewGuid(),
+                            ExistingFilePath = uniqueFileName,
                             RealEstateId = realEstate.ID,
                         };
                         _context.FilesToApi.AddAsync(path);
@@ -124,7 +126,31 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
 
         public void FilesToApi(CarDto dto, Car car)
         {
-            throw new NotImplementedException();
+            string uniqueFileName = null;
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
+                {
+                    Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
+                }
+                foreach (var image in dto.Files)
+                {
+                    string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                        FileToApi path = new FileToApi
+                        {
+                            ID = Guid.NewGuid(),
+                            ExistingFilePath = uniqueFileName,
+                            CarId = car.ID,
+                        };
+                        _context.FilesToApi.AddAsync(path);
+                    }
+                }
+            }
         }
     }
 }
