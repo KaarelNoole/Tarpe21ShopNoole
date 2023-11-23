@@ -42,27 +42,27 @@ namespace Tarpe21ShopNoole.Controllers
             vm.Text = dto.Text;
             vm.MobileLink = dto.MobileLink;
             vm.Link = dto.Link;
-            vm.Categoty = dto.Category;
+            vm.Category = dto.Category;
 
-            vm.Temperature.Minimum.Value = dto.TempMinValue;
-            vm.Temperature.Minimum.Unit = dto.TempMinUnit;
-            vm.Temperature.Minimum.UnitType = dto.TempMinUnitType;
+            vm.TempMinValue = dto.TempMinValue;
+            vm.TempMinUnit = dto.TempMinUnit;
+            vm.TempMinUnitType = dto.TempMinUnitType;
 
-            vm.Temperature.Maximum.Value = dto.TempMaxValue;
-            vm.Temperature.Maximum.Unit = dto.TempMaxUnit;
-            vm.Temperature.Maximum.UnitType = dto.TempMaxUnitType;
+            vm.TempMaxValue = dto.TempMaxValue;
+            vm.TempMaxUnit = dto.TempMaxUnit;
+            vm.TempMaxUnitType = dto.TempMaxUnitType;
 
-            vm.DayCycle.Icon = dto.DayIcon;
-            vm.DayCycle.IconPhrase = dto.DayIconPhrase;
-            vm.DayCycle.HasPrecipitation = dto.DayHasPrecipitation;
-            vm.DayCycle.PrecipitationType = dto.DayPrecipitationType;
-            vm.DayCycle.PrecipitationIntensity = dto.DayPrecipitationIntensity;
+            vm.DayIcon = dto.DayIcon;
+            vm.DayIconPhrase = dto.DayIconPhrase;
+            vm.DayHasPrecipitation = dto.DayHasPrecipitation;
+            vm.DayPrecipitationType = dto.DayPrecipitationType;
+            vm.DayPrecipitationIntesity = dto.DayPrecipitationIntensity;
 
-            vm.NightCycle.Icon = dto.DayIcon;
-            vm.NightCycle.IconPhrase = dto.DayIconPhrase;
-            vm.NightCycle.HasPrecipitation = dto.DayHasPrecipitation;
-            vm.NightCycle.PrecipitationType = dto.DayPrecipitationType;
-            vm.NightCycle.PrecipitationIntensity = dto.DayPrecipitationIntensity;
+            vm.NightIcon = dto.DayIcon;
+            vm.NightIconPhrase = dto.DayIconPhrase;
+            vm.NightHasPrecipitation = dto.DayHasPrecipitation;
+            vm.NightPrecipitationType = dto.DayPrecipitationType;
+            vm.NightPrecipitationIntesity = dto.DayPrecipitationIntensity;
 
             return View(vm);
         }
