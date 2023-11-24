@@ -12,6 +12,7 @@ using Tarpe21ShopNoole.Core.ServiceInterface;
 using Tarpe21ShopNoole.Data;
 using Microsoft.Extensions.Hosting;
 using TARpe21ShopNoole.ApplicationServices.Services;
+using TARpe21ShipNoole.SpaceshipTest.Mock;
 
 namespace TARpe21ShipNoole.SpaceshipTest
 {
@@ -38,7 +39,7 @@ namespace TARpe21ShipNoole.SpaceshipTest
         {
             services.AddScoped<ISpaceshipsServices, SpaceshipServices>();
             services.AddScoped<IFileServices, FileServices>();
-            services.AddScoped<IHostingEnvironment>();
+            services.AddScoped<IHostingEnvironment, MockIHostEnviroment>();
 
             services.AddDbContext<Tarpe21ShopNooleContext>
                 (x =>

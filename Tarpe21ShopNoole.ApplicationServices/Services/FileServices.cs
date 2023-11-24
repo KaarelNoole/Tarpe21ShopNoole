@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Tarpe21ShopNoole.ApplicationServices.Services;
 using Tarpe21ShopNoole.Core.Domain;
 using Tarpe21ShopNoole.Core.Dto;
 using Tarpe21ShopNoole.Data;
 using Tarpe21ShopNoole.Data.Migrations;
+
 
 namespace TARpe21ShopNoole.ApplicationServices.Services
 {
@@ -71,13 +72,13 @@ namespace TARpe21ShopNoole.ApplicationServices.Services
             string uniqueFileName = null;
             if (dto.Files != null && dto.Files.Count > 0)
             {
-                if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
+                if (!Directory.Exists(_webHost.ContentRootPath + "\\multipleFileUpload\\"))
                 {
-                    Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
+                    Directory.CreateDirectory(_webHost.ContentRootPath + "\\multipleFileUpload\\");
                 }
                 foreach (var image in dto.Files)
                 {
-                    string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
+                    string uploadsFolder = Path.Combine(_webHost.ContentRootPath, "multipleFileUpload");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -100,7 +101,7 @@ namespace TARpe21ShopNoole.ApplicationServices.Services
             {
                 var imageId = await _context.FilesToApi
                     .FirstOrDefaultAsync(x => x.ExistingFilePath == dto.ExistingFilePath);
-                var filePath = _webHost.WebRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
+                var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
@@ -114,7 +115,7 @@ namespace TARpe21ShopNoole.ApplicationServices.Services
         {
             var imageId = await _context.FilesToApi
                 .FirstOrDefaultAsync(x => x.ID == dto.ID);
-            var filePath = _webHost.WebRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
+            var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -129,13 +130,13 @@ namespace TARpe21ShopNoole.ApplicationServices.Services
             string uniqueFileName = null;
             if (dto.Files != null && dto.Files.Count > 0)
             {
-                if (!Directory.Exists(_webHost.WebRootPath + "\\multipleFileUpload\\"))
+                if (!Directory.Exists(_webHost.ContentRootPath + "\\multipleFileUpload\\"))
                 {
-                    Directory.CreateDirectory(_webHost.WebRootPath + "\\multipleFileUpload\\");
+                    Directory.CreateDirectory(_webHost.ContentRootPath + "\\multipleFileUpload\\");
                 }
                 foreach (var image in dto.Files)
                 {
-                    string uploadsFolder = Path.Combine(_webHost.WebRootPath, "multipleFileUpload");
+                    string uploadsFolder = Path.Combine(_webHost.ContentRootPath, "multipleFileUpload");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
