@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Tarpe21ShopNoole.Core.Dto;
 using Tarpe21ShopNoole.Core.ServiceInterface;
+using MailKit.Net.Smtp;
+using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 namespace Tarpe21ShopNoole.ApplicationServices.Services
 {
-    public class EmailService : iEmailService
+    public class EmailService : IEmailService
     {
         private readonly IConfiguration _config;
 

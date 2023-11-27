@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tarpe21ShopNoole.Core.Dto;
 using Tarpe21ShopNoole.Core.ServiceInterface;
+using Tarpe21ShopNoole.Models.Email;
 
 namespace Tarpe21ShopNoole.Controllers
 {
     public class EmailController : Controller
     {
-        private readonly iEmailService _emailService;
-        public EmailController(iEmailService emailService)
+        private readonly IEmailService _emailService;
+        public EmailController(IEmailService emailService)
         {
             _emailService = emailService;
         }
@@ -17,7 +18,7 @@ namespace Tarpe21ShopNoole.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SendEmail(EmailModelViewModel vm)
+        public IActionResult SendEmail(EmailViewModel vm)
         {
             var dto = new EmailDto()
             {

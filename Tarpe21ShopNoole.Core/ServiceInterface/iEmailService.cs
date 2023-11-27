@@ -7,7 +7,7 @@ using Tarpe21ShopNoole.Core.Dto;
 
 namespace Tarpe21ShopNoole.Core.ServiceInterface
 {
-    public interface iEmailService
+    public interface IEmailService
     {
         void SendEmail(EmailDto dto);
 

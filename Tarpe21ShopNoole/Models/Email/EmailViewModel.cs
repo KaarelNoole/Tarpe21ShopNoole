@@ -1,6 +1,6 @@
 ﻿namespace Tarpe21ShopNoole.Models.Email
 {
-    public class EmailModelViewModel
+    public class EmailViewModel
     {
         public string To { get; set; }
         public string Subject { get; set; }
