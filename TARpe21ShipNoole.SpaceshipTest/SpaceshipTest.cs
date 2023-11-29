@@ -47,7 +47,12 @@ namespace TARpe21ShipNoole.SpaceshipTest
         [Fact]
         public async Task Should_DeleteByIdSpaceship_WhenDeleteSpaceship()
         {
-           
+            SpaceshipDto dto = MockSpaceshipData();
+            var SpaceShip = await Svc<ISpaceshipsServices>().Create(dto);
+
+            var result = await Svc<ISpaceshipsServices>().Delete((Guid)SpaceShip.ID);
+
+            Assert.Equal(result, SpaceShip);
         }
 
         [Fact]
@@ -115,7 +120,41 @@ namespace TARpe21ShipNoole.SpaceshipTest
         [Fact]
         public async Task ShouldNot_UpdateSpaceship_WhenNotUpdateData()
         {
+            SpaceshipDto dto = MockSpaceshipData();
+            var Spaceship = await Svc<ISpaceshipsServices>().Create(dto);
 
+            SpaceshipDto NullUpdate = MockNotUptadeSpaceship();
+            var result = await Svc<ISpaceshipsServices>().Update(NullUpdate);
+
+            var NullID = NullUpdate.ID;
+
+            Assert.True(result.ID != NullID);
+        }
+
+        private SpaceshipDto MockNotUptadeSpaceship()
+        {
+            SpaceshipDto NotSpaceship = new()
+            {
+                Name = "Testname",
+                Description = "Test description",
+                PassengerCount = 4,
+                CrewCount = 4,
+                CargoWeight = 3000,
+                MaxSpeedInVaccuum = 200,
+                BuiltAtDate = DateTime.Now,
+                MaidenLaunch = DateTime.Now,
+                Manufacturer = "Test manufacturer",
+                IsSpaceshipPreviouslyOwned = true,
+                FullTripsCount = 1,
+                Type = "Test Type",
+                EnginePower = 9001,
+                FuelConsumptionPerDay = 4000,
+                MaintenanceCount = 0,
+                LastMaintenance = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+            };
+            return NotSpaceship;
         }
     }
 }
