@@ -26,4 +26,8 @@
 	  <ProjectReference Include="..\Tarpe21ShopNoole.ApplicationServices\Tarpe21ShopNoole.ApplicationServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\OpenWeather\" />
+  </ItemGroup>
+
 </Project>
