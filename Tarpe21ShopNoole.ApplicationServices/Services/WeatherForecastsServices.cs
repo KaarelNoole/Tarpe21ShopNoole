@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Nancy;
 using Nancy.Json;
+using Tarpe21ShopNoole.Core.Dto.OpenWeatherDto;
 using Tarpe21ShopNoole.Core.Dto.WeatherDto;
 using Tarpe21ShopNoole.Core.ServiceInterface;
 
@@ -59,5 +61,23 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
             }
             return dto;
         }
+
+        public async Task<OpenWeatherResultDto> OpenWeatherDetail(OpenWeatherResultDto dto)
+        {
+            string openapikey = "";
+            var url = $"";
+
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+                OpenWeatherRootDto weatherInfo = (new JavaScriptSerializer()).Deserialize<OpenWeatherRootDto>(json);
+                
+
+            }
+                return dto;
+        }
+        
+
+
     }
 }

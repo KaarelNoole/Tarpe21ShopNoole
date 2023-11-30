@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dto\OpenWeatherDto\" />
-  </ItemGroup>
-
 </Project>
