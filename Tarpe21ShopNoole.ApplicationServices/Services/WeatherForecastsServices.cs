@@ -71,7 +71,7 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
             {
                 string json = client.DownloadString(url);
                 OpenWeatherRootDto weatherInfo = (new JavaScriptSerializer()).Deserialize<OpenWeatherRootDto>(json);
-                
+                //test
 
             }
                 return dto;
