@@ -64,14 +64,21 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
 
         public async Task<OpenWeatherResultDto> OpenWeatherDetail(OpenWeatherResultDto dto)
         {
-            string openapikey = "";
-            var url = $"";
+            string openapikey = "7ba820d416182f9e45f4e39c95d4696b";
+            var url = $"https://api.openweathermap.org/data/2.5/weather?q={dto.City}&units=metric&APPID={openapikey}";
 
             using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
-                OpenWeatherRootDto weatherInfo = (new JavaScriptSerializer()).Deserialize<OpenWeatherRootDto>(json);
-                
+                OpenWeatherRootDto weatherResult = (new JavaScriptSerializer()).Deserialize<OpenWeatherRootDto>(json);
+
+                dto.City = weatherResult.Name;
+                dto.Temperature = Math.Round(weatherResult.Main.Temp);
+                dto.Feels_like = Math.Round(weatherResult.Main.FeelsLike);
+                dto.Humidity = weatherResult.Main.Humidity;
+                dto.Pressure = weatherResult.Main.Pressure;
+                dto.Speed = weatherResult.Wind.Speed;
+                dto.Description = weatherResult.Weather[0].Description;
 
             }
                 return dto;
