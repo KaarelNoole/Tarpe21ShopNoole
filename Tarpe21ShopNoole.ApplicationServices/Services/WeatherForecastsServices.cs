@@ -73,6 +73,10 @@ namespace Tarpe21ShopNoole.ApplicationServices.Services
                 OpenWeatherRootDto weatherResult = (new JavaScriptSerializer()).Deserialize<OpenWeatherRootDto>(json);
 
                 dto.City = weatherResult.Name;
+                dto.Timezone = weatherResult.Timezone;
+                dto.Name = weatherResult.Name;
+                dto.Lon = weatherResult.Lon;
+                dto.Lat = weatherResult.Lat;
                 dto.Temperature = Math.Round(weatherResult.Main.Temp);
                 dto.Feels_like = Math.Round(weatherResult.Main.FeelsLike);
                 dto.Humidity = weatherResult.Main.Humidity;

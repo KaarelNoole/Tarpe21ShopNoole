@@ -9,7 +9,6 @@ namespace Tarpe21ShopNoole.Controllers
     public class OpenWeatherController : Controller
     {
         private readonly IWeatherForecastsServices _openWeatherForecastServices;
-        SearchCityViewModel vm = new SearchCityViewModel();
 
         public OpenWeatherController(IWeatherForecastsServices openWeathersServices)
         {
@@ -26,7 +25,7 @@ namespace Tarpe21ShopNoole.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("City","OpenWeathers");
+                return RedirectToAction("City","OpenWeather");
             }
 
             return View();
@@ -34,16 +33,14 @@ namespace Tarpe21ShopNoole.Controllers
         [HttpPost]
         public IActionResult SearchCity(SearchCityViewModel searchCityViewModel)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                return RedirectToAction("City", "OpenWeather", new { city = searchCityViewModel.CityName });
             }
-            else
-            {
-                return RedirectToAction("City", "OpenWeathers", new { city = searchCityViewModel.CityName });
+            return View();
             }
-
-        }
+          
+        
         [HttpGet]
         public IActionResult City(string city)
         {

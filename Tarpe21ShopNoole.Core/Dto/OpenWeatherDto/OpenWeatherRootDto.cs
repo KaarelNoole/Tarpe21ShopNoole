@@ -9,8 +9,6 @@ namespace Tarpe21ShopNoole.Core.Dto.OpenWeatherDto
 {
     public class OpenWeatherRootDto
     {
-        [JsonPropertyName("coord")]
-        public Coords Coord { get; set; }
 
         [JsonPropertyName("weather")]
         public List<Weathers> Weather { get; set; }
@@ -50,16 +48,7 @@ namespace Tarpe21ShopNoole.Core.Dto.OpenWeatherDto
 
         [JsonPropertyName("cod")]
         public int Cod { get; set; }
-    }
-    public class Clouds
-    {
 
-        [JsonPropertyName("all")]
-        public int All { get; set; }
-    }
-
-    public class Coords
-    {
 
         [JsonPropertyName("lon")]
         public double Lon { get; set; }
@@ -67,6 +56,14 @@ namespace Tarpe21ShopNoole.Core.Dto.OpenWeatherDto
         [JsonPropertyName("lat")]
         public double Lat { get; set; }
     }
+}
+    public class Clouds
+    {
+
+        [JsonPropertyName("all")]
+        public int All { get; set; }
+    }
+
 
     public class Mains
     {
@@ -150,5 +147,5 @@ namespace Tarpe21ShopNoole.Core.Dto.OpenWeatherDto
         [JsonPropertyName("gust")]
         public double Gust { get; set; }
     }
-}
+
 
